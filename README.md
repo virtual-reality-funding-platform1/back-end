@@ -36,12 +36,12 @@
     goalFundingDate:    Timestamp   *requried*
     dateCreated:        Timestamp
     dateupdated:        Timestamp
-    projectTitle:		String		*requried*
-    projectStory:		String		*requried*
-    projectHeroImage:	String		*requried*
-    goalFunding:		integer		*requried*
-    currentFunding:		integer		*requried*
-    userID:				integer		*requried*
+    projectTitle:       String      *requried*
+    projectStory:       String      *requried*
+    projectHeroImage:   String      *requried*
+    goalFunding:        integer     *requried*
+    currentFunding:     integer     *requried*
+    userID:             integer     *requried*
 }
 ```
 
