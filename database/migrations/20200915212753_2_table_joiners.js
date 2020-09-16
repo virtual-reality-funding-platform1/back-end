@@ -16,6 +16,7 @@ exports.up = async function (knex) {
 			.notNullable()
 			.onDelete('CASCADE')
 			.onUpdate('CASCADE');
+		table.primary(['projectID', 'userID']);
 	});
 };
 
