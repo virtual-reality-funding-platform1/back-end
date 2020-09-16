@@ -14,7 +14,7 @@ const registerUser = async (req, res, next) => {
 	}
 };
 
-const getUser = async (req, res) => {
+const getUser = async (req, res, next) => {
 	const user = await User.findById(req.params.id);
 	if (!user) {
 		return res.status(404).json({
@@ -54,14 +54,14 @@ const deleteUser = async (req, res, next) => {
 	}
 };
 
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
 	try {
+		// console.log(req.user);
 		const token = await createToken(req.user);
-		// delete req.user.password;
-
+		delete req.user.password;
 		return res.status(200).json({ user: req.user, token });
 	} catch (err) {
-		console.log(error);
+		// console.log(error);
 		return res.status(500).json({ error: 'Error logging in' });
 	}
 };

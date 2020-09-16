@@ -1,10 +1,11 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
 
 // import local routes
-const UserRouter = require("./routes/users-routes");
+const UserRouter = require('./routes/users-routes');
+const ProjRouter = require('./routes/project-routes');
 
 // set server up
 const server = express();
@@ -15,23 +16,24 @@ server.use(cors());
 server.use(express.json());
 
 // use custom routes
-server.use("/users", UserRouter);
+server.use('/users', UserRouter);
+server.use('/projects', ProjRouter);
 
 // generic welcome
-server.get("/", (_, res, __) => {
-    res.status(200).json({ message: "Welcome to How To Lambda-XYZ" });
+server.get('/', (_, res, __) => {
+	res.status(200).json({ message: 'Welcome to How To Lambda-XYZ' });
 });
 
 // error handling
 server.use((err, _, res, __) => {
-    console.log("FROM app.js", err);
-    res.status(500).json({ message: "From App: Something Went Wrong" });
+	console.log('FROM app.js', err);
+	res.status(500).json({ message: 'From App: Something Went Wrong' });
 });
 
-server.get("*", (req, res) => {
-    res.status(404).json({
-        message: "Unknown Path requested.",
-    });
+server.get('*', (req, res) => {
+	res.status(404).json({
+		message: 'Unknown Path requested.',
+	});
 });
 
 // export to prevent testing errors

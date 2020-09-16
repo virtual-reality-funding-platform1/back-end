@@ -22,24 +22,7 @@ const findById = (id) => {
 };
 
 const findByEmail = (email) => {
-	return db('users')
-		.select(
-			'id',
-			'username',
-			'email',
-			'userRole',
-			'dateCreated',
-			'avatarUrl',
-			'address_street',
-			'address_city',
-			'address_state',
-			'address_zip',
-			'address_country',
-			'firstName',
-			'lastName'
-		)
-		.where({ email })
-		.first();
+	return db('users').select('*').where({ email }).first();
 };
 
 const findByUsername = (username) => {
@@ -66,7 +49,7 @@ const findByUsername = (username) => {
 const insert = async (user) => {
 	try {
 		const [res] = await db('users').insert(user).returning('id');
-		console.log('## added USER', res);
+		// console.log('## added USER', res);
 		return findById(res);
 	} catch (error) {
 		console.log(error);
