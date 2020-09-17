@@ -63,7 +63,7 @@
 | :--------------: | ------ | ----------------------- | --------------------------- | -------------------- |
 |    Fetch All     | GET    | /projects               | n/a                         | [{all projects}...]  |
 |  Get by UserID   | GET    | /projects/users/:userID | n/a                         | [{user projects}...] |
-| Get by projectID | GET    | /projects/:projectID    | n/a                         | [{user projects}...] |
+| Get by projectID | GET    | /projects/:projectID    | n/a                         | {project}            |
 | AuthUser Create  | POST   | /projects               | {pjTtl,pjStry,glFund,usrID} | {project}            |
 |  AuthUser Edit   | PUT    | /projects/:projectID    | {pjTtl,pjStry,glFund,usrID} | {project}            |
 |   AuthUser DEL   | DELETE | /projects/:projectID    | n/a                         | {success/fail}       |
