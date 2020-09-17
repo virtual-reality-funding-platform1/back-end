@@ -1,4 +1,4 @@
-# Lambda X backend
+# Lambda VR Funding backend
 
 ## Hosted backend
 
@@ -45,7 +45,7 @@
 }
 ```
 
-## Routes
+## Endpoints
 
 ### USERS
 
