@@ -24,22 +24,24 @@ function remove(id) {
 	return db('projects').delete().where({ id });
 }
 
-function fetchProjectsByUserID(id) {
-	return db('user_projects as UP')
-		.innerJoin('projects as P', 'p.id', 'UP.projectID')
-		.innerJoin('users as U', 'U.id', 'UP.userID')
-		.where('UP.userID', id)
+function fetchByUserID(id) {
+	return db('projects')
+		.join('users', 'users.id', '=', 'projects.userID')
+		.where('users.id', id)
 		.select(
-			'P.id',
-			'P.dateCreated',
-			'P.goalFundingDate',
-			'P.projectTitle',
-			'P.projectStory',
-			'P.projectHeroImage',
-			'P.goalFunding',
-			'P.currentFunding',
-			'U.id',
-			'U.username'
+			'projects.id as projectID',
+			'projects.dateCreated',
+			'projects.goalFundingDate',
+			'projects.projectTitle',
+			'projects.projectStory',
+			'projects.projectHeroImage',
+			'projects.goalFunding',
+			'projects.currentFunding',
+			'users.id as userID',
+			'users.username',
+			'users.avatarUrl',
+			'users.firstName',
+			'users.lastName'
 		);
 }
 
@@ -49,5 +51,5 @@ module.exports = {
 	insert,
 	update,
 	remove,
-	fetchProjectsByUserID,
+	fetchByUserID,
 };

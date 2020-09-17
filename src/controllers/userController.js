@@ -3,14 +3,15 @@ const createToken = require('../utils/createToken');
 
 const registerUser = async (req, res, next) => {
 	const user = await User.insert(req.body);
-	const token = await createToken(user);
 	delete user.password;
+	const token = await createToken(user);
 
 	return res.status(201).json({ user, token });
 };
 
 const getUser = async (req, res, next) => {
 	const user = await User.findById(req.params.id);
+
 	if (!user) {
 		return res.status(404).json({
 			message: 'User not found.',
@@ -39,8 +40,8 @@ const deleteUser = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
 	// console.log(req.user);
-	const token = await createToken(req.user);
 	delete req.user.password;
+	const token = await createToken(req.user);
 	return res.status(200).json({ user: req.user, token });
 };
 

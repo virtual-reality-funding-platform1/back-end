@@ -11,7 +11,7 @@ exports.fetchAll = async (req, res, next) => {
 };
 
 exports.fetchByUserID = async (req, res, next) => {
-	const projects = await Proj.fetchProjectsByUserID(req.params.userID);
+	const projects = await Proj.fetchByUserID(req.params.userID);
 	if (!projects || projects.length === 0) {
 		return res.status(404).json({
 			message: 'Projects not found, try again later.',
