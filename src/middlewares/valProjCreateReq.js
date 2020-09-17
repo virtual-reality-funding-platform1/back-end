@@ -5,7 +5,7 @@ function validateCreateProject(req, res, next) {
 				'projectTitle',
 				'projectStory',
 				'goalFunding',
-				'currentFunding',
+				'userID',
 			];
 			for (requiredField of required) {
 				if (!req.body[requiredField]) {

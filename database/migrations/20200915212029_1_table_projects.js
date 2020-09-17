@@ -11,7 +11,7 @@ exports.up = async function (knex) {
 		table.string('projectStory').notNullable();
 		table.string('projectHeroImage');
 		table.integer('goalFunding').notNullable();
-		table.integer('currentFunding').notNullable();
+		table.integer('currentFunding').defaultTo(0);
 
 		table
 			.integer('userID')

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const errorHandlers = require('./middlewares/errorHandlers');
 
 // import local routes
 const UserRouter = require('./routes/users-routes');
@@ -24,16 +25,13 @@ server.get('/', (_, res, __) => {
 	res.status(200).json({ message: 'Welcome to How To Lambda-XYZ' });
 });
 
+// not found
+server.use(errorHandlers.notFound);
+
 // error handling
 server.use((err, _, res, __) => {
 	console.log('FROM app.js', err);
 	res.status(500).json({ message: 'From App: Something Went Wrong' });
-});
-
-server.get('*', (req, res) => {
-	res.status(404).json({
-		message: 'Unknown Path requested.',
-	});
 });
 
 // export to prevent testing errors

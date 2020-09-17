@@ -5,15 +5,20 @@ const validateUserLoginRequest = require('../middlewares/valUserLoginReq');
 const createUserRequirements = require('../middlewares/registerUserReqs');
 const validateUserEditRequirements = require('../middlewares/valUserEditReqs');
 const restrict = require('../middlewares/auth_restrict');
+const { catchErrors } = require('../middlewares/errorHandlers');
 
 const router = express.Router();
 
-router.post('/', createUserRequirements, UserController.registerUser);
-router.get('/:id', UserController.getUser);
+router.post(
+	'/',
+	createUserRequirements,
+	catchErrors(UserController.registerUser)
+);
+router.get('/:id', catchErrors(UserController.getUser));
 router.post(
 	'/auth/login',
 	validateUserLoginRequest(),
-	UserController.loginUser
+	catchErrors(UserController.loginUser)
 );
 // must be signed in to edit or delete
 // router.use(restrict);
@@ -21,8 +26,8 @@ router.put(
 	'/:id',
 	restrict(),
 	validateUserEditRequirements,
-	UserController.editUser
+	catchErrors(UserController.editUser)
 );
-router.delete('/:id', restrict(), UserController.deleteUser);
+router.delete('/:id', restrict(), catchErrors(UserController.deleteUser));
 
 module.exports = router;

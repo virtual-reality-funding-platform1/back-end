@@ -1,37 +1,63 @@
 const Proj = require('../models/project_model');
 
-const fetchAll = async (req, res, next) => {
-	try {
-		const projects = await Proj.fetchAll();
-
-		return res.status(200).json(projects);
-	} catch (err) {
-		next(err);
+exports.fetchAll = async (req, res, next) => {
+	const projects = await Proj.fetchAll();
+	if (!projects || projects.length === 0) {
+		return res.status(404).json({
+			message: 'Projects not found, try again later.',
+		});
 	}
+	return res.status(200).json(projects);
 };
 
-const fetchByUserID = async (req, res, next) => {
-	try {
-		const projects = await Proj.fetchProjectsByUserID(req.params.userID);
-		res.status(200).json(projects);
-	} catch (err) {
-		console.log('### Find Project by UserID ERROR');
-		next(err);
+exports.fetchByUserID = async (req, res, next) => {
+	const projects = await Proj.fetchProjectsByUserID(req.params.userID);
+	if (!projects || projects.length === 0) {
+		return res.status(404).json({
+			message: 'Projects not found, try again later.',
+		});
 	}
+	res.status(200).json(projects);
 };
 
-const createProject = async (req, res, next) => {
-	try {
-		const project = await Proj.insert(req.body);
-
-		return res.status(201).json(project);
-	} catch (err) {
-		next(err);
+exports.fetchByID = async (req, res, next) => {
+	const project = await Proj.findById(req.params.projectID);
+	// console.log(project);
+	if (!project) {
+		return res.status(404).json({
+			message: 'Project not found, try again later.',
+		});
 	}
+
+	return res.status(200).json(project);
 };
 
-module.exports = {
-	fetchAll,
-	fetchByUserID,
-	createProject,
+exports.createProject = async (req, res, next) => {
+	const project = await Proj.insert(req.body);
+	if (!project) {
+		return res.status(404).json({
+			message: 'Could not create project, try again later.',
+		});
+	}
+	return res.status(201).json(project);
+};
+
+exports.editProject = async (req, res, next) => {
+	const project = await Proj.update(req.body, req.params.projectID);
+	if (!project) {
+		return res.status(404).json({
+			message: 'Could not edit project, try again later.',
+		});
+	}
+	res.status(200).json(project);
+};
+
+exports.deleteProject = async (req, res, next) => {
+	const project = await Proj.remove(req.params.projectID);
+	if (!project || project === 0) {
+		return res.status(404).json({
+			message: 'Could not delete, try again later',
+		});
+	}
+	return res.status(200).json({ message: 'Project deleted' });
 };
