@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const errorHandlers = require('./middlewares/errorHandlers');
+const { notFound } = require('./middlewares/errorHandlers');
 
 // import local routes
 const UserRouter = require('./routes/users-routes');
@@ -26,7 +26,7 @@ server.get('/', (_, res, __) => {
 });
 
 // not found
-server.use(errorHandlers.notFound);
+server.use(notFound);
 
 // error handling
 server.use((err, _, res, __) => {
