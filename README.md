@@ -45,6 +45,19 @@
 }
 ```
 
+### Donations
+
+```
+{
+    id:                 int         @AUTOINCREMENTS
+    donationAmount:     integer     *requried*
+    projectID:          integer     *requried*
+    userID:             integer     *requried*
+    dateCreated:        Timestamp
+    dateupdated:        Timestamp
+}
+```
+
 ## Endpoints
 
 ### USERS
@@ -69,3 +82,11 @@
 |   AuthUser DEL   | DELETE | /projects/:projectID    | n/a                         | {success/fail}       |
 
 ### Donations
+
+|      USER ACTION       | METHOD | ROUTE                                         | SEND TO DB               | DB REPLIES        |
+| :--------------------: | ------ | --------------------------------------------- | ------------------------ | ----------------- |
+|  Get Donos by ProjID   | GET    | /donations/projects/:projectID                | n/a                      | [{donations}...]  |
+|                        |        | **_Auth User for access to endpoints below_** |                          |                   |
+|         Donate         | POST   | /donations                                    | {donoAmnt,projID,userID} | {Success/fail}    |
+| Get Donation by UserID | GET    | /donations/users/:userID                      | n/a                      | [{user donos}...] |
+|   Get Donation by ID   | GET    | /donations/:donoID                            | n/a                      | {donation}        |
