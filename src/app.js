@@ -24,7 +24,7 @@ server.use('/donations', DonoRouter);
 
 // generic welcome
 server.get('/', (_, res, __) => {
-	res.status(200).json({ message: 'Welcome to How To Lambda-XYZ' });
+	res.status(200).json({ message: 'Welcome to Lambda VR Funding' });
 });
 
 // not found
