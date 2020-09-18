@@ -4,14 +4,6 @@ const gravatar = require('gravatar');
 
 const createUserRequirements = async (req, res, next) => {
 	try {
-		const required = ['username', 'password', 'email', 'userRole'];
-		for (requiredField of required) {
-			if (!req.body[requiredField]) {
-				return res
-					.status(400)
-					.json({ error: `${requiredField} is a requiredField` });
-			}
-		}
 		req.body.userRole = req.body.userRole.toLowerCase();
 		req.body.email = req.body.email.toLowerCase();
 		if (req.body.userRole !== 'user' && req.body.userRole !== 'investor') {
