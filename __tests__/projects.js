@@ -24,6 +24,7 @@ describe("Testing endpoints: /projects", () => {
 	// fetches user's projects
 	it("GET /users/ID", async () => {
 		const res = await supertest(server).get("/projects/users/2");
+		//
 		expect(res.status).toBe(200);
 		expect(res.type).toBe("application/json");
 		expect(res.body).toHaveLength(2);

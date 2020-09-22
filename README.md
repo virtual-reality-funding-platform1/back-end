@@ -87,6 +87,6 @@
 | :--------------------: | ------ | --------------------------------------------- | ------------------------ | ----------------- |
 |  Get Donos by ProjID   | GET    | /donations/projects/:projectID                | n/a                      | [{donations}...]  |
 |                        |        | **_Auth User for access to endpoints below_** |                          |                   |
-|         Donate         | POST   | /donations                                    | {donoAmnt,projID,userID} | {Success/fail}    |
+|         Donate         | POST   | /donations/projects/:projectID                | {donoAmnt,projID,userID} | {Success/fail}    |
 | Get Donation by UserID | GET    | /donations/users/:userID                      | n/a                      | [{user donos}...] |
 |   Get Donation by ID   | GET    | /donations/:donoID                            | n/a                      | {donation}        |
