@@ -34,8 +34,8 @@ exports.fetchByID = async (req, res, next) => {
 
 exports.createProject = async (req, res, next) => {
 	const userID = req.token.userID;
-	const project = req.body;
-	const project = await Proj.insert({ ...project, userID });
+	const sentProject = req.body;
+	const project = await Proj.insert({ ...sentProject, userID });
 	if (!project) {
 		return res.status(404).json({
 			message: "Could not create project, try again later.",
