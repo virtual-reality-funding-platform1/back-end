@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken');
-const Proj = require('../models/project_model');
+const jwt = require("jsonwebtoken");
+const Proj = require("../models/project_model");
 
 function valUserCanEdit() {
 	return async (req, res, next) => {
 		const authError = {
 			message:
-				'MIDDLEWARE, these are not the projects you are looking for!',
+				"EDIT MIDDLEWARE, these are not the projects you are looking for!",
 		};
 
 		try {
@@ -19,7 +19,7 @@ function valUserCanEdit() {
 			if (!curProj) {
 				return res
 					.status(404)
-					.json({ message: 'Project not found, try again later.' });
+					.json({ message: "Project not found, try again later." });
 			}
 
 			jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
@@ -32,7 +32,7 @@ function valUserCanEdit() {
 					return res.status(403).json(authError);
 				}
 				console.log(
-					'User is editing their respective project, move along.'
+					"User is editing their respective project, move along."
 				);
 				next();
 			});

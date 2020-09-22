@@ -1,10 +1,10 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 function restrict() {
 	return async (req, res, next) => {
 		const authError = {
 			message:
-				'MIDDLEWARE, these are not the routes you are looking for!',
+				"AUTH MIDDLEWARE, these are not the routes you are looking for!",
 		};
 
 		try {
