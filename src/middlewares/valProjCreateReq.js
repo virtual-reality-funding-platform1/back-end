@@ -2,10 +2,10 @@ function validateCreateProject(req, res, next) {
 	return (req, res, next) => {
 		try {
 			const required = [
-				'projectTitle',
-				'projectStory',
-				'goalFunding',
-				'userID',
+				"projectTitle",
+				"projectStory",
+				"goalFunding",
+				// 'userID',
 			];
 			for (requiredField of required) {
 				if (!req.body[requiredField]) {
