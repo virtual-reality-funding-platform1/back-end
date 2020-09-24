@@ -62,13 +62,14 @@
 
 ### USERS
 
-|  User Action  | METHOD | ROUTE             | SEND TO DB               | DB REPLIES     |
-| :-----------: | ------ | ----------------- | ------------------------ | -------------- |
-|    Create     | POST   | /users            | {usrnm,pswd,eml,usrRole} | {token, user } |
-|     Read      | GET    | /users/:id        | n/a                      | {userInfo}     |
-|     Login     | POST   | /users/auth/login | {email,password}         | {token, user } |
-| AuthUser Edit | PUT    | /users/:id        | {usrnm,eml,frtNm,lstNm}  | {Success/Fail} |
-| AuthUser Del  | DELETE | /users/:id        | n/a                      | {Success/Fail} |
+|  User Action  | METHOD | ROUTE              | SEND TO DB               | DB REPLIES            |
+| :-----------: | ------ | ------------------ | ------------------------ | --------------------- |
+|     Login     | POST   | /users/auth/login  | {email,password}         | {token, user }        |
+|    Logout     | POST   | /users/auth/logout |                          | {msg,token(expired) } |
+|    Create     | POST   | /users             | {usrnm,pswd,eml,usrRole} | {token, user }        |
+|     Read      | GET    | /users/:id         | n/a                      | {userInfo}            |
+| AuthUser Edit | PUT    | /users/:id         | {usrnm,eml,frtNm,lstNm}  | {Success/Fail}        |
+| AuthUser Del  | DELETE | /users/:id         | n/a                      | {Success/Fail}        |
 
 ### Projects
 
